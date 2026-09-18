@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-950 text-slate-200 font-sans antialiased;
+  background-image:
+    radial-gradient(ellipse at top, rgba(28, 102, 245, 0.12), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(16, 185, 129, 0.08), transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(139, 92, 246, 0.06), transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Glassmorphism utility */
+@layer components {
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-2xl;
+  }
+  .glass-strong {
+    @apply bg-white/[0.07] backdrop-blur-2xl border border-white/[0.12] rounded-2xl;
+  }
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-white/[0.07] hover:border-white/[0.15];
+  }
+  .glass-panel {
+    @apply bg-slate-900/60 backdrop-blur-xl border border-white/[0.08];
+  }
+  .btn-primary {
+    @apply px-4 py-2.5 rounded-xl font-medium text-sm bg-gradient-to-r from-primary-600 to-primary-500 text-white
+           shadow-lg shadow-primary-600/25 hover:shadow-primary-600/40 hover:from-primary-500 hover:to-primary-400
+           transition-all duration-200 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply px-4 py-2.5 rounded-xl font-medium text-sm text-slate-300 hover:text-white
+           hover:bg-white/[0.06] transition-all duration-200 active:scale-[0.98];
+  }
+  .btn-ghost-active {
+    @apply px-4 py-2.5 rounded-xl font-medium text-sm text-white
+           bg-white/[0.08] border border-white/[0.12] transition-all duration-200 active:scale-[0.98];
+  }
+  .input-field {
+    @apply w-full bg-slate-900/50 border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-slate-100
+           placeholder-slate-500 focus:outline-none focus:border-primary-500/50 focus:ring-1 focus:ring-primary-500/30
+           transition-all duration-200;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Shimmer skeleton */
+.shimmer-bg {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #59a6ff 0%, #34d399 50%, #a78bfa 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Code block syntax highlighting */
+.code-block {
+  @apply font-mono text-sm leading-relaxed;
+}
+.code-block .tok-keyword { @apply text-primary-400; }
+.code-block .tok-string { @apply text-accent-400; }
+.code-block .tok-comment { @apply text-slate-500 italic; }
+.code-block .tok-number { @apply text-warning-400; }
+.code-block .tok-fn { @apply text-secondary-400; }
+.code-block .tok-tag { @apply text-error-400; }
+.code-block .tok-attr { @apply text-warning-300; }
+
+/* Markdown rendered content */
+.md-content h1 { @apply text-xl font-bold text-white mt-4 mb-2; }
+.md-content h2 { @apply text-lg font-bold text-white mt-3 mb-2; }
+.md-content h3 { @apply text-base font-semibold text-slate-100 mt-3 mb-1; }
+.md-content p { @apply text-sm text-slate-300 leading-relaxed my-2; }
+.md-content ul { @apply text-sm text-slate-300 list-disc list-inside my-2 space-y-1; }
+.md-content ol { @apply text-sm text-slate-300 list-decimal list-inside my-2 space-y-1; }
+.md-content li { @apply text-slate-300; }
+.md-content strong { @apply text-white font-semibold; }
+.md-content em { @apply text-slate-200 italic; }
+.md-content code { @apply font-mono text-xs text-accent-400 bg-white/[0.06] px-1.5 py-0.5 rounded; }
+.md-content pre { @apply bg-slate-950/80 border border-white/[0.08] rounded-xl p-3 my-2 overflow-x-auto; }
+.md-content pre code { @apply bg-transparent p-0 text-slate-300; }
+.md-content blockquote { @apply border-l-2 border-primary-500/50 pl-3 text-slate-400 italic my-2; }
+.md-content table { @apply w-full text-sm my-2 border border-white/[0.08] rounded-lg overflow-hidden; }
+.md-content th { @apply bg-white/[0.04] text-white font-semibold px-3 py-2 text-left; }
+.md-content td { @apply px-3 py-2 border-t border-white/[0.06] text-slate-300; }
+.md-content hr { @apply border-white/[0.08] my-3; }
+
+/* Dropzone drag-over state */
+.dropzone-active {
+  @apply border-primary-500 bg-primary-500/[0.08] scale-[1.01];
+}
